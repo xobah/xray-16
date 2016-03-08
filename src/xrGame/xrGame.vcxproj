@@ -17,7 +17,6 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{200652A6-043E-4634-8837-87983B3BD5E0}</ProjectGuid>
     <RootNamespace>xrGame</RootNamespace>
-    <WindowsTargetPlatformVersion>8.11</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -82,16 +81,14 @@
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <AdditionalIncludeDirectories>$(SolutionDir)xrServerEntities;$(SolutionDir)Externals\OpenAutomate\inc;$(SolutionDir)Externals\CxImage;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>LUABIND_DYNAMIC_LINK;WIN32;DEBUG;_WINDOWS;_USRDLL;XRGAME_EXPORTS;MSVC;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_USRDLL;XRGAME_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
-      <ExceptionHandling>Sync</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
@@ -133,13 +130,12 @@
       <OmitFramePointers>false</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <AdditionalIncludeDirectories>$(SolutionDir)xrServerEntities;$(SolutionDir)Externals\OpenAutomate\inc;$(SolutionDir)Externals\CxImage;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>LUABIND_DYNAMIC_LINK;DEBUG;MIXED;WIN32;_WINDOWS;_USRDLL;XRGAME_EXPORTS;dSINGLE;MSVC;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_USRDLL;XRGAME_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
@@ -180,16 +176,14 @@
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <AdditionalIncludeDirectories>$(SolutionDir)xrServerEntities;$(SolutionDir)Externals\OpenAutomate\inc;$(SolutionDir)Externals\CxImage;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>LUABIND_DYNAMIC_LINK;WIN32;NDEBUG;_WINDOWS;_USRDLL;XRGAME_EXPORTS;dSINGLE;MSVC;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_USRDLL;XRGAME_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <ExceptionHandling />
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
@@ -216,7 +210,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\xrGameSpy\gamespy\md5.h" />
+    <ClInclude Include="..\Externals\GameSpy\src\GameSpy\md5.h" />
     <ClInclude Include="..\xrServerEntities\ai_sounds.h" />
     <ClInclude Include="..\xrServerEntities\alife_human_brain.h" />
     <ClInclude Include="..\xrServerEntities\alife_human_brain_inline.h" />
@@ -784,6 +778,8 @@
     <ClInclude Include="CarLights.h" />
     <ClInclude Include="CarWeapon.h" />
     <ClInclude Include="car_memory.h" />
+    <ClInclude Include="CdkeyDecode\base32.h" />
+    <ClInclude Include="CdkeyDecode\cdkeydecode.h" />
     <ClInclude Include="cdkey_ban_list.h" />
     <ClInclude Include="CharacterPhysicsSupport.h" />
     <ClInclude Include="character_community.h" />
@@ -898,23 +894,7 @@
     <ClInclude Include="GalantineArtifact.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GamePersistent.h" />
-    <ClInclude Include="gamespy\CdkeyDecode\base32.h" />
-    <ClInclude Include="gamespy\CdkeyDecode\cdkeydecode.h" />
-    <ClInclude Include="gamespy\GameSpy_ATLAS.h" />
-    <ClInclude Include="GameSpy\GameSpy_Available.h" />
-    <ClInclude Include="GameSpy\GameSpy_Base_Defs.h" />
-    <ClInclude Include="GameSpy\GameSpy_Browser.h" />
-    <ClInclude Include="gamespy\GameSpy_Full.h" />
-    <ClInclude Include="GameSpy\GameSpy_FuncDefs.h" />
-    <ClInclude Include="GameSpy\GameSpy_GCD_Client.h" />
-    <ClInclude Include="GameSpy\GameSpy_GCD_Server.h" />
-    <ClInclude Include="gamespy\GameSpy_GP.h" />
-    <ClInclude Include="gamespy\GameSpy_HTTP.h" />
-    <ClInclude Include="GameSpy\GameSpy_Keys.h" />
-    <ClInclude Include="GameSpy\GameSpy_Patching.h" />
-    <ClInclude Include="GameSpy\GameSpy_QR2.h" />
     <ClInclude Include="GameSpy\GameSpy_QR2_callbacks.h" />
-    <ClInclude Include="gamespy\GameSpy_SAKE.h" />
     <ClInclude Include="GameTask.h" />
     <ClInclude Include="GameTaskDefs.h" />
     <ClInclude Include="GametaskManager.h" />
@@ -1691,7 +1671,7 @@
     <ClInclude Include="ZudaArtifact.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\xrGameSpy\gamespy\md5c.c">
+    <ClCompile Include="..\Externals\GameSpy\src\GameSpy\md5c.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -2315,6 +2295,16 @@
     <ClCompile Include="CarWeapon.cpp" />
     <ClCompile Include="CarWheels.cpp" />
     <ClCompile Include="car_memory.cpp" />
+    <ClCompile Include="CdkeyDecode\base32.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="CdkeyDecode\cdkeydecode.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="cdkey_ban_list.cpp" />
     <ClCompile Include="CharacterPhysicsSupport.cpp" />
     <ClCompile Include="character_community.cpp" />
@@ -2463,26 +2453,7 @@
       <PrecompiledHeaderFile>pch_script.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(ProjectName)_script.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="gamespy\CdkeyDecode\base32.c">
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="gamespy\CdkeyDecode\cdkeydecode.c">
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="gamespy\GameSpy_ATLAS.cpp" />
-    <ClCompile Include="GameSpy\GameSpy_Available.cpp" />
-    <ClCompile Include="GameSpy\GameSpy_Browser.cpp" />
-    <ClCompile Include="gamespy\GameSpy_Full.cpp" />
-    <ClCompile Include="GameSpy\GameSpy_GCD_Client.cpp" />
-    <ClCompile Include="GameSpy\GameSpy_GCD_Server.cpp" />
-    <ClCompile Include="gamespy\GameSpy_GP.cpp" />
-    <ClCompile Include="gamespy\GameSpy_HTTP.cpp" />
-    <ClCompile Include="GameSpy\GameSpy_Patching.cpp" />
-    <ClCompile Include="GameSpy\GameSpy_QR2.cpp" />
     <ClCompile Include="GameSpy\GameSpy_QR2_callbacks.cpp" />
-    <ClCompile Include="gamespy\GameSpy_SAKE.cpp" />
     <ClCompile Include="GameTask.cpp">
       <PrecompiledHeaderFile>pch_script.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(ProjectName)_script.pch</PrecompiledHeaderOutputFile>
@@ -3877,10 +3848,6 @@
     </ProjectReference>
     <ProjectReference Include="$(SolutionDir)xrPhysics\xrPhysics.vcxproj">
       <Project>{98d24a3d-7666-4c11-9d6e-b10393ce8cba}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="$(SolutionDir)xrXMLParser\xrXMLParser.vcxproj">
-      <Project>{94a1c366-3d19-48e6-8170-4adc2e70df98}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\xrScriptEngine\xrScriptEngine.vcxproj">

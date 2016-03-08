@@ -59,19 +59,19 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(xrPlugBinDir)3DSMax6</OutDir>
+    <OutDir>$(xrPlugBinDir)3DSMax6\</OutDir>
     <TargetName>XRayMaterial</TargetName>
     <TargetExt>.dlt</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(xrPlugBinDir)3DSMax6</OutDir>
+    <OutDir>$(xrPlugBinDir)3DSMax6\</OutDir>
     <TargetName>XRayMaterial</TargetName>
     <TargetExt>.dlt</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(xrPlugBinDir)3DSMax6</OutDir>
+    <OutDir>$(xrPlugBinDir)3DSMax6\</OutDir>
     <TargetName>XRayMaterial</TargetName>
     <TargetExt>.dlt</TargetExt>
   </PropertyGroup>
@@ -87,12 +87,10 @@
       <AdditionalOptions>/LD %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)Externals\3dsmax/ver-6.0/include;$(SolutionDir)Externals\3dsmax/ver-6.0/cssdk/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>DEBUG;WIN32;_WINDOWS;_USRDLL;_MAX_MATERIAL;_MAX_PLUGIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_USRDLL;_MAX_MATERIAL;_MAX_PLUGIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
@@ -124,14 +122,12 @@
       <AdditionalOptions>/LD %(AdditionalOptions)</AdditionalOptions>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>$(SolutionDir)Externals\3dsmax/ver-6.0/include;$(SolutionDir)Externals\3dsmax/ver-6.0/cssdk/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_MAX_MATERIAL;_MAX_PLUGIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_USRDLL;_MAX_MATERIAL;_MAX_PLUGIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
-      <ExceptionHandling />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
@@ -165,15 +161,12 @@
       <AdditionalOptions>/LD %(AdditionalOptions)</AdditionalOptions>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>$(SolutionDir)Externals\3dsmax/ver-6.0/include;$(SolutionDir)Externals\3dsmax/ver-6.0/cssdk/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_MAX_MATERIAL;_MAX_PLUGIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_USRDLL;_MAX_MATERIAL;_MAX_PLUGIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
-      <ExceptionHandling>
-      </ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>

@@ -18,7 +18,6 @@
     <ProjectGuid>{A0F7D1FB-59A7-4717-A7E4-96F37E91998E}</ProjectGuid>
     <RootNamespace>xrCore</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'" Label="Configuration">
@@ -72,15 +71,13 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)Externals;$(SolutionDir)Externals\openssl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;DEBUG;_WINDOWS;_USRDLL;XRCORE_EXPORTS;_SECURE_SCL=0;%(PreprocessorDefinitions);CRYPTO_BUILD</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_USRDLL;XRCORE_EXPORTS;CRYPTO_BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <MinimalRebuild>true</MinimalRebuild>
-      <ExceptionHandling>Sync</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <BrowseInformation />
@@ -108,15 +105,13 @@
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <AdditionalIncludeDirectories>$(SolutionDir)Externals;$(SolutionDir)Externals\openssl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;XRCORE_EXPORTS;_SECURE_SCL=0;%(PreprocessorDefinitions);CRYPTO_BUILD</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_USRDLL;XRCORE_EXPORTS;CRYPTO_BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <ExceptionHandling />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <BrowseInformation />
@@ -143,13 +138,12 @@
       <OmitFramePointers>false</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <AdditionalIncludeDirectories>$(SolutionDir)Externals;$(SolutionDir)Externals\openssl\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MIXED;WIN32;DEBUG;_WINDOWS;_USRDLL;XRCORE_EXPORTS;_SECURE_SCL=0;%(PreprocessorDefinitions);CRYPTO_BUILD</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_USRDLL;XRCORE_EXPORTS;CRYPTO_BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <BrowseInformation />
@@ -172,107 +166,6 @@
     <ClCompile Include="Animation\interp.cpp" />
     <ClCompile Include="Animation\Motion.cpp" />
     <ClCompile Include="Animation\SkeletonMotions.cpp" />
-    <ClCompile Include="blackbox\BlackBoxUI.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">TurnOffAllWarnings</WarningLevel>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">
-      </PrecompiledHeader>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">TurnOffAllWarnings</WarningLevel>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">TurnOffAllWarnings</WarningLevel>
-    </ClCompile>
-    <ClCompile Include="blackbox\BSUFunctions.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">TurnOffAllWarnings</WarningLevel>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">
-      </PrecompiledHeader>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">TurnOffAllWarnings</WarningLevel>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">TurnOffAllWarnings</WarningLevel>
-    </ClCompile>
-    <ClCompile Include="blackbox\CrashHandler.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">TurnOffAllWarnings</WarningLevel>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">
-      </PrecompiledHeader>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">TurnOffAllWarnings</WarningLevel>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">TurnOffAllWarnings</WarningLevel>
-    </ClCompile>
-    <ClCompile Include="blackbox\DiagAssert.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">TurnOffAllWarnings</WarningLevel>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">true</ExcludedFromBuild>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">
-      </PrecompiledHeader>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">TurnOffAllWarnings</WarningLevel>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">TurnOffAllWarnings</WarningLevel>
-    </ClCompile>
-    <ClCompile Include="blackbox\GetLoadedModules.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">TurnOffAllWarnings</WarningLevel>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">
-      </PrecompiledHeader>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">TurnOffAllWarnings</WarningLevel>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">TurnOffAllWarnings</WarningLevel>
-    </ClCompile>
-    <ClCompile Include="blackbox\IsNT.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">TurnOffAllWarnings</WarningLevel>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">
-      </PrecompiledHeader>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">TurnOffAllWarnings</WarningLevel>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">TurnOffAllWarnings</WarningLevel>
-    </ClCompile>
-    <ClCompile Include="blackbox\NT4ProcessInfo.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">TurnOffAllWarnings</WarningLevel>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">
-      </PrecompiledHeader>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">TurnOffAllWarnings</WarningLevel>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">TurnOffAllWarnings</WarningLevel>
-    </ClCompile>
-    <ClCompile Include="blackbox\stdafx_.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">
-      </PrecompiledHeader>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
-    </ClCompile>
-    <ClCompile Include="blackbox\TLHELPProcessInfo.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">TurnOffAllWarnings</WarningLevel>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">
-      </PrecompiledHeader>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">TurnOffAllWarnings</WarningLevel>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">TurnOffAllWarnings</WarningLevel>
-    </ClCompile>
     <ClCompile Include="clsid.cpp" />
     <ClCompile Include="cpuid.cpp" />
     <ClCompile Include="crc32.cpp" />
@@ -282,6 +175,8 @@
     <ClCompile Include="Crypto\xr_dsa_verifyer.cpp" />
     <ClCompile Include="Crypto\xr_sha.cpp" />
     <ClCompile Include="Debug\dxerr.cpp" />
+    <ClCompile Include="Debug\MiniDump.cpp" />
+    <ClCompile Include="Debug\StackTrace.cpp" />
     <ClCompile Include="doug_lea_allocator.cpp" />
     <ClCompile Include="dump_string.cpp" />
     <ClCompile Include="FileSystem.cpp" />
@@ -359,25 +254,18 @@
     <ClCompile Include="Threading\Event.cpp" />
     <ClCompile Include="Threading\ttapi.cpp" />
     <ClCompile Include="Threading\Lock.cpp" />
+    <ClCompile Include="XML\tinystr.cpp" />
+    <ClCompile Include="XML\tinyxml.cpp" />
+    <ClCompile Include="XML\tinyxmlerror.cpp" />
+    <ClCompile Include="XML\tinyxmlparser.cpp" />
+    <ClCompile Include="XML\XMLDocument.cpp" />
     <ClCompile Include="xrCore.cpp" />
     <ClCompile Include="ModuleLookup.cpp" />
-    <ClCompile Include="xrDebugNew.cpp" />
+    <ClCompile Include="xrDebug.cpp" />
     <ClCompile Include="xrMemory.cpp" />
     <ClCompile Include="xrMemory_align.cpp" />
     <ClCompile Include="xrMemory_debug.cpp" />
     <ClCompile Include="xrMemory_POOL.cpp" />
-    <ClCompile Include="xrMemory_pso_Copy.cpp">
-      <AssemblerOutput Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">AssemblyAndSourceCode</AssemblerOutput>
-      <AssemblerOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AssemblyAndSourceCode</AssemblerOutput>
-    </ClCompile>
-    <ClCompile Include="xrMemory_pso_Fill.cpp">
-      <AssemblerOutput Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">AssemblyAndSourceCode</AssemblerOutput>
-      <AssemblerOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AssemblyAndSourceCode</AssemblerOutput>
-    </ClCompile>
-    <ClCompile Include="xrMemory_pso_Fill32.cpp">
-      <AssemblerOutput Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">AssemblyAndSourceCode</AssemblerOutput>
-      <AssemblerOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AssemblyAndSourceCode</AssemblerOutput>
-    </ClCompile>
     <ClCompile Include="xrMemory_subst_borland.cpp" />
     <ClCompile Include="xrMemory_subst_msvc.cpp" />
     <ClCompile Include="xrsharedmem.cpp" />
@@ -391,31 +279,24 @@
     <ClCompile Include="_std_extensions.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\common\GUID.hpp" />
-    <ClInclude Include="..\common\LevelStructure.hpp" />
-    <ClInclude Include="..\common\object_broker.h" />
-    <ClInclude Include="..\common\object_cloner.h" />
-    <ClInclude Include="..\common\object_comparer.h" />
-    <ClInclude Include="..\common\object_destroyer.h" />
-    <ClInclude Include="..\common\object_interfaces.h" />
-    <ClInclude Include="..\common\object_loader.h" />
-    <ClInclude Include="..\common\object_saver.h" />
-    <ClInclude Include="..\common\object_type_traits.h" />
-    <ClInclude Include="..\common\Util.hpp" />
-    <ClInclude Include="..\common\_d3d_extensions.h" />
+    <ClInclude Include="..\Common\GUID.hpp" />
+    <ClInclude Include="..\Common\LevelStructure.hpp" />
+    <ClInclude Include="..\Common\Noncopyable.hpp" />
+    <ClInclude Include="..\Common\object_broker.h" />
+    <ClInclude Include="..\Common\object_cloner.h" />
+    <ClInclude Include="..\Common\object_comparer.h" />
+    <ClInclude Include="..\Common\object_destroyer.h" />
+    <ClInclude Include="..\Common\object_interfaces.h" />
+    <ClInclude Include="..\Common\object_loader.h" />
+    <ClInclude Include="..\Common\object_saver.h" />
+    <ClInclude Include="..\Common\object_type_traits.h" />
+    <ClInclude Include="..\Common\Util.hpp" />
+    <ClInclude Include="..\Common\_d3d_extensions.h" />
     <ClInclude Include="Animation\Bone.hpp" />
     <ClInclude Include="Animation\Envelope.hpp" />
     <ClInclude Include="Animation\Motion.hpp" />
     <ClInclude Include="Animation\SkeletonMotionDefs.hpp" />
     <ClInclude Include="Animation\SkeletonMotions.hpp" />
-    <ClInclude Include="blackbox\BugslayerUtil.h" />
-    <ClInclude Include="blackbox\CrashHandler.h" />
-    <ClInclude Include="blackbox\DiagAssert.h" />
-    <ClInclude Include="blackbox\Internal.h" />
-    <ClInclude Include="blackbox\stdafx_.h" />
-    <ClInclude Include="blackbox\SymbolEngine.h" />
-    <ClInclude Include="blackbox\WarningsOff.h" />
-    <ClInclude Include="blackbox\WarningsOn.h" />
     <ClInclude Include="buffer_vector.h" />
     <ClInclude Include="buffer_vector_inline.h" />
     <ClInclude Include="cdecl_cast.hpp" />
@@ -435,6 +316,9 @@
     <ClInclude Include="Debug\DXGetErrorDescription.inl">
       <FileType>CppHeader</FileType>
     </ClInclude>
+    <ClInclude Include="Debug\MiniDump.h" />
+    <ClInclude Include="Debug\StackTrace.h" />
+    <ClInclude Include="Debug\SymbolEngine.h" />
     <ClInclude Include="doug_lea_allocator.h" />
     <ClInclude Include="dump_string.h" />
     <ClInclude Include="fastdelegate.h" />
@@ -493,15 +377,16 @@
     <ClInclude Include="Threading\ttapi.h" />
     <ClInclude Include="Threading\Lock.hpp" />
     <ClInclude Include="vector.h" />
+    <ClInclude Include="XML\tinystr.h" />
+    <ClInclude Include="XML\tinyxml.h" />
+    <ClInclude Include="XML\XMLDocument.hpp" />
     <ClInclude Include="xrCore.h" />
     <ClInclude Include="ModuleLookup.hpp" />
-    <ClInclude Include="Platform.h" />
     <ClInclude Include="xrDebug.h" />
     <ClInclude Include="xrDebug_macros.h" />
     <ClInclude Include="xrMemory.h" />
     <ClInclude Include="xrMemory_align.h" />
     <ClInclude Include="xrMEMORY_POOL.h" />
-    <ClInclude Include="xrMemory_pso.h" />
     <ClInclude Include="xrMemory_pure.h" />
     <ClInclude Include="xrMemory_subst_borland.h" />
     <ClInclude Include="xrMemory_subst_msvc.h" />

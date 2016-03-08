@@ -61,19 +61,19 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(xrPlugBinDir)LightWave</OutDir>
+    <OutDir>$(xrPlugBinDir)LightWave\</OutDir>
     <TargetName>XRayExport</TargetName>
     <TargetExt>.p</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(xrPlugBinDir)LightWave</OutDir>
+    <OutDir>$(xrPlugBinDir)LightWave\</OutDir>
     <TargetName>XRayExport</TargetName>
     <TargetExt>.p</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(xrPlugBinDir)LightWave</OutDir>
+    <OutDir>$(xrPlugBinDir)LightWave\</OutDir>
     <TargetName>XRayExport</TargetName>
     <TargetExt>.p</TargetExt>
   </PropertyGroup>
@@ -88,13 +88,11 @@
     <ClCompile>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>$(SolutionDir)Externals\lightwave/ver-8.0/include;$(SolutionDir)Externals\lightwave/ver-8.0/include/lwsdk;../Shared;$(ProjectDir)export;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_X86_;_WIN32;WIN32;_WINDOWS;_USRDLL;_LW_PLUGIN;_LW_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_USRDLL;_LW_PLUGIN;_LW_EXPORT;_X86_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <ExceptionHandling />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
@@ -131,14 +129,11 @@
     <ClCompile>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>$(SolutionDir)Externals\lightwave/ver-8.0/include;$(SolutionDir)Externals\lightwave/ver-8.0/include/lwsdk;../Shared;$(ProjectDir)export;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_X86_;_WIN32;WIN32;_WINDOWS;_USRDLL;_LW_PLUGIN;_LW_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_USRDLL;_LW_PLUGIN;_LW_EXPORT;_X86_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <ExceptionHandling>
-      </ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
@@ -176,13 +171,11 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)Externals\lightwave/ver-8.0/include;$(SolutionDir)Externals\lightwave/ver-8.0/include/lwsdk;../Shared;$(ProjectDir)export;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>DEBUG;_X86_;_WIN32;WIN32;_WINDOWS;_USRDLL;_LW_PLUGIN;_LW_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_USRDLL;_LW_PLUGIN;_LW_EXPORT;_X86_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <ExceptionHandling>Sync</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>

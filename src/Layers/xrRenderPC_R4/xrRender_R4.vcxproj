@@ -18,7 +18,6 @@
     <ProjectGuid>{AC9B12ED-A2D7-4337-A981-5BD8430E96D8}</ProjectGuid>
     <RootNamespace>xrRender_R4</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>8.11</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'" Label="Configuration">
@@ -73,29 +72,31 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
-      <AdditionalIncludeDirectories>$(SolutionDir)Externals\OpenAutomate\inc;$(SolutionDir)Externals\nvapi;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>LUABIND_DYNAMIC_LINK;MSAA_DX10_1;MSAA_SAMPLES=4;USE_MSAA;GBUFFER_OPTIMIZATION;WIN32;DEBUG;_WINDOWS;_USRDLL;XRRENDER_R4_EXPORTS;_SECURE_SCL=0;USE_DX11;USE_RESOURCE_DEBUGGER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)Externals\OpenAutomate\inc;$(SolutionDir)Externals\nvapi;$(SolutionDir)Externals\AGS_SDK;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MSAA_DX10_1;MSAA_SAMPLES=4;USE_MSAA;GBUFFER_OPTIMIZATION;_USRDLL;XRRENDER_R4_EXPORTS;USE_DX11;USE_RESOURCE_DEBUGGER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
-      <ExceptionHandling>Sync</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <AdditionalOptions>-Zm150 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>LuaJIT.lib;luabind.lib;dxguid.lib;d3dx11.lib;oalib.lib;D3DCompiler.lib;d3d11.lib;dxgi.lib;nvapi.lib;d3d10.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LuaJIT.lib;luabind.lib;nvapi.lib;amd_ags_x86.lib;oalib.lib;dxguid.lib;d3dx11.lib;D3DCompiler.lib;d3d11.lib;dxgi.lib;d3d10.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(DXSDK_DIR)Lib\x86;$(SolutionDir)Externals\OpenAutomate\libraries;$(SolutionDir)Externals\nvapi\x86;$(SolutionDir)Externals\luajit\bin\$(PlatformShortName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)Lib\x86;$(SolutionDir)Externals\OpenAutomate\libraries;$(SolutionDir)Externals\nvapi\x86;$(SolutionDir)Externals\luajit\bin\$(PlatformShortName);$(SolutionDir)Externals\AGS_SDK\ags_lib\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SubSystem>Windows</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <TargetMachine>MachineX86</TargetMachine>
       <LargeAddressAware>true</LargeAddressAware>
     </Link>
+    <PostBuildEvent>
+      <Message>Copy AGS dll to output directory</Message>
+      <Command>copy /Y "$(SolutionDir)Externals\AGS_SDK\ags_lib\lib\amd_ags_$(PlatformShortName).dll" "$(OutDir)amd_ags_$(PlatformShortName).dll"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -106,24 +107,22 @@
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <WholeProgramOptimization>true</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)Externals\OpenAutomate\inc;$(SolutionDir)Externals\nvapi;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>LUABIND_DYNAMIC_LINK;USE_DX11;WIN32;NDEBUG;_WINDOWS;_USRDLL;XRRENDER_R4_EXPORTS;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)Externals\OpenAutomate\inc;$(SolutionDir)Externals\nvapi;$(SolutionDir)Externals\AGS_SDK;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>USE_DX11;_USRDLL;XRRENDER_R4_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <ExceptionHandling />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <AdditionalOptions>-Zm150 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>LuaJIT.lib;luabind.lib;dxguid.lib;d3dx11.lib;oalib.lib;D3DCompiler.lib;d3d11.lib;dxgi.lib;nvapi.lib;d3d10.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(DXSDK_DIR)Lib\x86;$(SolutionDir)Externals\OpenAutomate\libraries;$(SolutionDir)Externals\nvapi\x86;$(SolutionDir)Externals\luajit\bin\$(PlatformShortName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>LuaJIT.lib;luabind.lib;nvapi.lib;amd_ags_x86.lib;oalib.lib;dxguid.lib;d3dx11.lib;D3DCompiler.lib;d3d11.lib;dxgi.lib;d3d10.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)Lib\x86;$(SolutionDir)Externals\OpenAutomate\libraries;$(SolutionDir)Externals\nvapi\x86;$(SolutionDir)Externals\luajit\bin\$(PlatformShortName);$(SolutionDir)Externals\AGS_SDK\ags_lib\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -132,6 +131,10 @@
       <TargetMachine>MachineX86</TargetMachine>
       <LargeAddressAware>true</LargeAddressAware>
     </Link>
+    <PostBuildEvent>
+      <Message>Copy AGS dll to output directory</Message>
+      <Command>copy /Y "$(SolutionDir)Externals\AGS_SDK\ags_lib\lib\amd_ags_$(PlatformShortName).dll" "$(OutDir)amd_ags_$(PlatformShortName).dll"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">
     <ClCompile>
@@ -141,14 +144,13 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>false</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
-      <AdditionalIncludeDirectories>$(SolutionDir)Externals\OpenAutomate\inc;$(SolutionDir)Externals\nvapi;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>LUABIND_DYNAMIC_LINK;MIXED;WIN32;DEBUG;_WINDOWS;_USRDLL;XRRENDER_R4_EXPORTS;_SECURE_SCL=0;USE_DX11;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)Externals\OpenAutomate\inc;$(SolutionDir)Externals\nvapi;$(SolutionDir)Externals\AGS_SDK;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_USRDLL;XRRENDER_R4_EXPORTS;USE_DX11;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
@@ -156,14 +158,18 @@
       <AdditionalOptions>-Zm150 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>LuaJIT.lib;luabind.lib;dxguid.lib;d3dx11.lib;oalib.lib;D3DCompiler.lib;d3d11.lib;dxgi.lib;nvapi.lib;d3d10.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(DXSDK_DIR)Lib\x86;$(SolutionDir)Externals\OpenAutomate\libraries;$(SolutionDir)Externals\nvapi\x86;$(SolutionDir)Externals\luajit\bin\$(PlatformShortName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>LuaJIT.lib;luabind.lib;nvapi.lib;amd_ags_x86.lib;oalib.lib;dxguid.lib;d3dx11.lib;D3DCompiler.lib;d3d11.lib;dxgi.lib;d3d10.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)Lib\x86;$(SolutionDir)Externals\OpenAutomate\libraries;$(SolutionDir)Externals\nvapi\x86;$(SolutionDir)Externals\luajit\bin\$(PlatformShortName);$(SolutionDir)Externals\AGS_SDK\ags_lib\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SubSystem>Windows</SubSystem>
       <LargeAddressAware>true</LargeAddressAware>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <ImportLibrary>$(xrLibDir)$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
+    <PostBuildEvent>
+      <Message>Copy AGS dll to output directory</Message>
+      <Command>copy /Y "$(SolutionDir)Externals\AGS_SDK\ags_lib\lib\amd_ags_$(PlatformShortName).dll" "$(OutDir)amd_ags_$(PlatformShortName).dll"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\xrRender\ApplicationRender.h" />

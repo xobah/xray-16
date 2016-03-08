@@ -54,7 +54,7 @@ public:
 	adopt_sampler&			_fmag_none		()						{ if (C) C->i_Filter_Mag(stage,D3DTEXF_NONE);										return *this;	}
 	adopt_sampler&			_fmag_point		()						{ if (C) C->i_Filter_Mag(stage,D3DTEXF_POINT);										return *this;	}
 	adopt_sampler&			_fmag_linear	()						{ if (C) C->i_Filter_Mag(stage,D3DTEXF_LINEAR);										return *this;	}
-	adopt_sampler&			_comp_less		()						{ if (C) C->i_Comparison(stage,D3DCMP_LESS);										return *this;	}
+	adopt_sampler&			_comp_less		()						{ if (C) C->i_Comparison(stage,D3D_COMPARISON_LESS_EQUAL);							return *this;	}
 };	
 
 #pragma warning( push )
@@ -324,7 +324,7 @@ Shader*	CResourceManager::_lua_Create		(LPCSTR d_shader, LPCSTR s_textures)
 		if (S.equal(v_shaders[it]))	return v_shaders[it];
 
 	// Create _new_ entry
-	Shader*		N			=	xr_new<Shader>(S);
+	Shader*		N			=	new Shader(S);
 	N->dwFlags				|=	xr_resource_flagged::RF_REGISTERED;
 	v_shaders.push_back		(N);
 	return N;

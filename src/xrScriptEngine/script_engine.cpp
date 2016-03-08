@@ -18,7 +18,7 @@
 #include "script_debugger.hpp"
 #endif
 #include <stdarg.h>
-#include <boost/noncopyable.hpp>
+#include "Common/Noncopyable.hpp"
 
 Flags32 g_LuaDebug;
 
@@ -169,7 +169,7 @@ void CScriptEngine::reinit()
     stateMapLock.Enter();
     if (!stateMap)
     {
-        stateMap = xr_new<xr_hash_map<lua_State*, CScriptEngine*>>();
+        stateMap = new xr_hash_map<lua_State*, CScriptEngine*>();
         stateMap->reserve(32); // 32 lua states should be enough
     }
     stateMapLock.Leave();
@@ -189,6 +189,8 @@ void CScriptEngine::reinit()
         file_header = file_header_new;
     else
         file_header = file_header_old;
+    scriptBufferSize = 1024*1024;
+    scriptBuffer = xr_alloc<char>(scriptBufferSize);
 }
 
 int CScriptEngine::vscript_log(LuaMessageType luaMessageType, LPCSTR caFormat, va_list marker)
@@ -338,38 +340,14 @@ bool CScriptEngine::load_buffer(lua_State *L, LPCSTR caBuffer, size_t tSize, LPC
         xr_sprintf(insert, header, caNameSpaceName, a, b);
         u32 str_len = xr_strlen(insert);
         u32 const total_size = str_len+tSize;
-        LPSTR script = nullptr;
-        bool dynamic_allocation = false;
-        __try
+        if (total_size>=scriptBufferSize)
         {
-            if (total_size < 768 * 1024)
-                script = (LPSTR)_alloca(total_size);
-            else
-            {
-#ifdef DEBUG
-                script = (LPSTR)Memory.mem_alloc(total_size, "lua script file");
-#else
-                script = (LPSTR)Memory.mem_alloc(total_size);
-#endif
-                dynamic_allocation = true;
-            }
+            scriptBufferSize = total_size;
+            scriptBuffer = (char *)xr_realloc(scriptBuffer, scriptBufferSize);
         }
-        __except (GetExceptionCode()==STATUS_STACK_OVERFLOW)
-        {
-            int errcode = _resetstkoflw();
-            R_ASSERT2(errcode, "Could not reset the stack after \"Stack overflow\" exception!");
-#ifdef DEBUG
-            script = (LPSTR)Memory.mem_alloc(total_size, "lua script file (after exception)");
-#else
-            script = (LPSTR)Memory.mem_alloc(total_size);
-#endif
-            dynamic_allocation = true;
-        }
-        xr_strcpy(script, total_size, insert);
-        CopyMemory(script+str_len, caBuffer, u32(tSize));
-        l_iErrorCode = luaL_loadbuffer(L, script, tSize+str_len, caScriptName);
-        if (dynamic_allocation)
-            xr_free(script);
+        xr_strcpy(scriptBuffer, total_size, insert);
+        CopyMemory(scriptBuffer+str_len, caBuffer, u32(tSize));
+        l_iErrorCode = luaL_loadbuffer(L, scriptBuffer, tSize+str_len, caScriptName);
     }
     else
         l_iErrorCode = luaL_loadbuffer(L, caBuffer, tSize, caScriptName);
@@ -560,7 +538,7 @@ luabind::object CScriptEngine::name_space(LPCSTR namespace_name)
     }
 }
 
-struct raii_guard : private boost::noncopyable
+struct raii_guard : private Noncopyable
 {
     CScriptEngine *scriptEngine;
     int m_error_code;
@@ -731,7 +709,7 @@ void CScriptEngine::initialize_lua_studio(lua_State *state, cs::lua_studio::worl
     s_destroy_world = (destroy_world_function_type)
         GetProcAddress(s_script_debugger_handle, "_cs_lua_studio_backend_destroy_world@4");
     R_ASSERT2 (s_destroy_world, "can't find function \"cs_lua_studio_backend_destroy_world\" in the library");
-    engine = xr_new<lua_studio_engine>();
+    engine = new lua_studio_engine();
     world = s_create_world(*engine, false, false);
     VERIFY(world);
     s_old_log_callback = SetLogCB(LogCallback(log_callback, this));
@@ -808,6 +786,8 @@ CScriptEngine::~CScriptEngine()
     disconnect_from_debugger();
 #endif
 #endif
+    if (scriptBuffer)
+        xr_free(scriptBuffer);
 }
 
 void CScriptEngine::unload()
@@ -828,7 +808,7 @@ void CScriptEngine::lua_error(lua_State *L)
     print_output(L, "", LUA_ERRRUN);
     on_error(L);
 #if !XRAY_EXCEPTIONS 
-    Debug.fatal(DEBUG_INFO, "LUA error: %s", lua_tostring(L, -1));
+    xrDebug::Fatal(DEBUG_INFO, "LUA error: %s", lua_tostring(L, -1));
 #else
     throw lua_tostring(L,-1);
 #endif
@@ -839,7 +819,7 @@ int CScriptEngine::lua_pcall_failed(lua_State *L)
     print_output(L, "", LUA_ERRRUN);
     on_error(L);
 #if !XRAY_EXCEPTIONS
-    Debug.fatal(DEBUG_INFO, "LUA error: %s", lua_isstring(L, -1) ? lua_tostring(L, -1) : "");
+    xrDebug::Fatal(DEBUG_INFO, "LUA error: %s", lua_isstring(L, -1) ? lua_tostring(L, -1) : "");
 #endif
     if (lua_isstring(L, -1))
         lua_pop (L, 1);
@@ -849,7 +829,7 @@ int CScriptEngine::lua_pcall_failed(lua_State *L)
 void CScriptEngine::lua_cast_failed(lua_State *L, const luabind::type_id &info)
 {
     print_output(L, "", LUA_ERRRUN);
-    Debug.fatal(DEBUG_INFO, "LUA error: cannot cast lua value to %s", info.name());
+    xrDebug::Fatal(DEBUG_INFO, "LUA error: cannot cast lua value to %s", info.name());
 }
 #endif
 
@@ -1138,7 +1118,7 @@ void CScriptEngine::parse_script_namespace(const char *name, char *ns, u32 nsSiz
     }
     else
     {
-        VERIFY(p-name+1<=nsSize);
+        VERIFY(u32(p-name+1)<=nsSize);
         strncpy(ns, name, p-name);
         ns[p-name] = 0;
     }
@@ -1161,7 +1141,7 @@ void CScriptEngine::restartDebugger()
 {
     if(debugger())
         stopDebugger();
-    m_scriptDebugger = xr_new<CScriptDebugger>(this);
+    m_scriptDebugger = new CScriptDebugger(this);
     debugger()->PrepareLuaBind();
     Msg("Script debugger restarted.");
 }
@@ -1255,18 +1235,6 @@ void CScriptEngine::on_error(lua_State *state)
     scriptEngine->debugger()->on_error(state);
 #endif
 }
-
-#ifdef DEBUG
-
-static void strreplaceall(xr_string &str, LPCSTR what, LPCSTR to)
-{
-    LPCSTR A;
-    int S_len = xr_strlen(what);
-    while (A = strstr(str.c_str(), what), A)
-        str.replace(A-str.c_str(), S_len, to);
-}
-
-#endif
 
 CScriptProcess *CScriptEngine::CreateScriptProcess(shared_str name, shared_str scripts)
 { return new CScriptProcess(this, name, scripts); }

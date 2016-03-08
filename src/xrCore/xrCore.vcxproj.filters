@@ -43,9 +43,6 @@
     <Filter Include="Debug core">
       <UniqueIdentifier>{fb17db11-1c85-43ab-9226-0c82ece07b51}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Debug core\BlackBox">
-      <UniqueIdentifier>{7298a13e-3c50-4f43-abc1-d9b9f711ae6c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="shared memory/string library">
       <UniqueIdentifier>{7df0d0bd-ee41-4712-ace8-642189d21208}</UniqueIdentifier>
     </Filter>
@@ -123,6 +120,12 @@
     </Filter>
     <Filter Include="Math\RNG">
       <UniqueIdentifier>{ba09a2fb-b14c-4c35-8e0d-957a47930740}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XML">
+      <UniqueIdentifier>{f365c098-99bb-41a7-858d-12ba18a1311e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XML\TinyXML">
+      <UniqueIdentifier>{eb0bfab5-c514-4df4-a747-d14beb72f57b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -216,15 +219,6 @@
     <ClCompile Include="xrMemory_POOL.cpp">
       <Filter>Memory manager</Filter>
     </ClCompile>
-    <ClCompile Include="xrMemory_pso_Copy.cpp">
-      <Filter>Memory manager</Filter>
-    </ClCompile>
-    <ClCompile Include="xrMemory_pso_Fill.cpp">
-      <Filter>Memory manager</Filter>
-    </ClCompile>
-    <ClCompile Include="xrMemory_pso_Fill32.cpp">
-      <Filter>Memory manager</Filter>
-    </ClCompile>
     <ClCompile Include="xrMemory_subst_borland.cpp">
       <Filter>Memory manager</Filter>
     </ClCompile>
@@ -239,36 +233,6 @@
     </ClCompile>
     <ClCompile Include="doug_lea_allocator.cpp">
       <Filter>Memory manager\dlmalloc\wrapper</Filter>
-    </ClCompile>
-    <ClCompile Include="xrDebugNew.cpp">
-      <Filter>Debug core</Filter>
-    </ClCompile>
-    <ClCompile Include="blackbox\BlackBoxUI.cpp">
-      <Filter>Debug core\BlackBox</Filter>
-    </ClCompile>
-    <ClCompile Include="blackbox\BSUFunctions.cpp">
-      <Filter>Debug core\BlackBox</Filter>
-    </ClCompile>
-    <ClCompile Include="blackbox\CrashHandler.cpp">
-      <Filter>Debug core\BlackBox</Filter>
-    </ClCompile>
-    <ClCompile Include="blackbox\DiagAssert.cpp">
-      <Filter>Debug core\BlackBox</Filter>
-    </ClCompile>
-    <ClCompile Include="blackbox\GetLoadedModules.cpp">
-      <Filter>Debug core\BlackBox</Filter>
-    </ClCompile>
-    <ClCompile Include="blackbox\IsNT.cpp">
-      <Filter>Debug core\BlackBox</Filter>
-    </ClCompile>
-    <ClCompile Include="blackbox\NT4ProcessInfo.cpp">
-      <Filter>Debug core\BlackBox</Filter>
-    </ClCompile>
-    <ClCompile Include="blackbox\stdafx_.cpp">
-      <Filter>Debug core\BlackBox</Filter>
-    </ClCompile>
-    <ClCompile Include="blackbox\TLHELPProcessInfo.cpp">
-      <Filter>Debug core\BlackBox</Filter>
     </ClCompile>
     <ClCompile Include="crc32.cpp">
       <Filter>shared memory/string library</Filter>
@@ -393,6 +357,30 @@
     <ClCompile Include="Crypto\xr_dsa_verifyer.cpp">
       <Filter>Crypto</Filter>
     </ClCompile>
+    <ClCompile Include="xrDebug.cpp">
+      <Filter>Debug core</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\MiniDump.cpp">
+      <Filter>Debug core</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\StackTrace.cpp">
+      <Filter>Debug core</Filter>
+    </ClCompile>
+    <ClCompile Include="XML\tinystr.cpp">
+      <Filter>XML\TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="XML\tinyxml.cpp">
+      <Filter>XML\TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="XML\tinyxmlerror.cpp">
+      <Filter>XML\TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="XML\tinyxmlparser.cpp">
+      <Filter>XML\TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="XML\XMLDocument.cpp">
+      <Filter>XML</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FTimer.h">
@@ -408,9 +396,6 @@
       <Filter>Kernel</Filter>
     </ClInclude>
     <ClInclude Include="ModuleLookup.hpp">
-      <Filter>Kernel</Filter>
-    </ClInclude>
-    <ClInclude Include="Platform.h">
       <Filter>Kernel</Filter>
     </ClInclude>
     <ClInclude Include="_bitwise.h">
@@ -569,9 +554,6 @@
     <ClInclude Include="xrMEMORY_POOL.h">
       <Filter>Memory manager</Filter>
     </ClInclude>
-    <ClInclude Include="xrMemory_pso.h">
-      <Filter>Memory manager</Filter>
-    </ClInclude>
     <ClInclude Include="xrMemory_pure.h">
       <Filter>Memory manager</Filter>
     </ClInclude>
@@ -595,30 +577,6 @@
     </ClInclude>
     <ClInclude Include="xrDebug_macros.h">
       <Filter>Debug core</Filter>
-    </ClInclude>
-    <ClInclude Include="blackbox\BugslayerUtil.h">
-      <Filter>Debug core\BlackBox</Filter>
-    </ClInclude>
-    <ClInclude Include="blackbox\CrashHandler.h">
-      <Filter>Debug core\BlackBox</Filter>
-    </ClInclude>
-    <ClInclude Include="blackbox\DiagAssert.h">
-      <Filter>Debug core\BlackBox</Filter>
-    </ClInclude>
-    <ClInclude Include="blackbox\Internal.h">
-      <Filter>Debug core\BlackBox</Filter>
-    </ClInclude>
-    <ClInclude Include="blackbox\stdafx_.h">
-      <Filter>Debug core\BlackBox</Filter>
-    </ClInclude>
-    <ClInclude Include="blackbox\SymbolEngine.h">
-      <Filter>Debug core\BlackBox</Filter>
-    </ClInclude>
-    <ClInclude Include="blackbox\WarningsOff.h">
-      <Filter>Debug core\BlackBox</Filter>
-    </ClInclude>
-    <ClInclude Include="blackbox\WarningsOn.h">
-      <Filter>Debug core\BlackBox</Filter>
     </ClInclude>
     <ClInclude Include="xr_resource.h">
       <Filter>shared memory/string library</Filter>
@@ -728,10 +686,10 @@
     <ClInclude Include="Media\Image.hpp">
       <Filter>Media</Filter>
     </ClInclude>
-    <ClInclude Include="..\common\Util.hpp">
+    <ClInclude Include="..\Common\Util.hpp">
       <Filter>Kernel\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\common\_d3d_extensions.h">
+    <ClInclude Include="..\Common\_d3d_extensions.h">
       <Filter>Kernel\Common</Filter>
     </ClInclude>
     <ClInclude Include="cdecl_cast.hpp">
@@ -767,28 +725,28 @@
     <ClInclude Include="Threading\Event.hpp">
       <Filter>Threading</Filter>
     </ClInclude>
-    <ClInclude Include="..\common\object_type_traits.h">
+    <ClInclude Include="..\Common\object_type_traits.h">
       <Filter>Common\Object</Filter>
     </ClInclude>
-    <ClInclude Include="..\common\object_broker.h">
+    <ClInclude Include="..\Common\object_broker.h">
       <Filter>Common\Object</Filter>
     </ClInclude>
-    <ClInclude Include="..\common\object_cloner.h">
+    <ClInclude Include="..\Common\object_cloner.h">
       <Filter>Common\Object</Filter>
     </ClInclude>
-    <ClInclude Include="..\common\object_comparer.h">
+    <ClInclude Include="..\Common\object_comparer.h">
       <Filter>Common\Object</Filter>
     </ClInclude>
-    <ClInclude Include="..\common\object_destroyer.h">
+    <ClInclude Include="..\Common\object_destroyer.h">
       <Filter>Common\Object</Filter>
     </ClInclude>
-    <ClInclude Include="..\common\object_interfaces.h">
+    <ClInclude Include="..\Common\object_interfaces.h">
       <Filter>Common\Object</Filter>
     </ClInclude>
-    <ClInclude Include="..\common\object_loader.h">
+    <ClInclude Include="..\Common\object_loader.h">
       <Filter>Common\Object</Filter>
     </ClInclude>
-    <ClInclude Include="..\common\object_saver.h">
+    <ClInclude Include="..\Common\object_saver.h">
       <Filter>Common\Object</Filter>
     </ClInclude>
     <ClInclude Include="Debug\dxerr.h">
@@ -800,10 +758,10 @@
     <ClInclude Include="Debug\DXGetErrorString.inl">
       <Filter>Debug core\DxErr</Filter>
     </ClInclude>
-    <ClInclude Include="..\common\GUID.hpp">
+    <ClInclude Include="..\Common\GUID.hpp">
       <Filter>Kernel\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\common\LevelStructure.hpp">
+    <ClInclude Include="..\Common\LevelStructure.hpp">
       <Filter>Kernel\Common</Filter>
     </ClInclude>
     <ClInclude Include="Crypto\crypto.h">
@@ -823,6 +781,27 @@
     </ClInclude>
     <ClInclude Include="Math\Random32.hpp">
       <Filter>Math\RNG</Filter>
+    </ClInclude>
+    <ClInclude Include="Debug\MiniDump.h">
+      <Filter>Debug core</Filter>
+    </ClInclude>
+    <ClInclude Include="Debug\StackTrace.h">
+      <Filter>Debug core</Filter>
+    </ClInclude>
+    <ClInclude Include="Debug\SymbolEngine.h">
+      <Filter>Debug core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Noncopyable.hpp">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="XML\tinystr.h">
+      <Filter>XML\TinyXML</Filter>
+    </ClInclude>
+    <ClInclude Include="XML\tinyxml.h">
+      <Filter>XML\TinyXML</Filter>
+    </ClInclude>
+    <ClInclude Include="XML\XMLDocument.hpp">
+      <Filter>XML</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

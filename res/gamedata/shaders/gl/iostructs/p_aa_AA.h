@@ -1,11 +1,11 @@
 
 out vec4 SV_Target;
 
-layout(location = TEXCOORD0)	in float4 	p_aa_AA_Tex0	; // TEXCOORD0;
-layout(location = TEXCOORD1)	in float4	p_aa_AA_Tex1	; // TEXCOORD1;
-layout(location = TEXCOORD2)	in float4 	p_aa_AA_Tex2	; // TEXCOORD2;
-layout(location = TEXCOORD3)	in float4	p_aa_AA_Tex3	; // TEXCOORD3;
-layout(location = TEXCOORD4)	in float4 	p_aa_AA_Tex4	; // TEXCOORD4;
+layout(location = TEXCOORD0)	in float2 	p_aa_AA_Tex0	; // TEXCOORD0;
+layout(location = TEXCOORD1)	in float2	p_aa_AA_Tex1	; // TEXCOORD1;
+layout(location = TEXCOORD2)	in float2 	p_aa_AA_Tex2	; // TEXCOORD2;
+layout(location = TEXCOORD3)	in float2	p_aa_AA_Tex3	; // TEXCOORD3;
+layout(location = TEXCOORD4)	in float2 	p_aa_AA_Tex4	; // TEXCOORD4;
 layout(location = TEXCOORD5)	in float4	p_aa_AA_Tex5	; // TEXCOORD5;
 layout(location = TEXCOORD6)	in float4 	p_aa_AA_Tex6	; // TEXCOORD6;
 

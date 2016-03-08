@@ -12,12 +12,13 @@
 
 extern "C"
 {
-#include "utils/LWO/lwo2.h" };
+#include "utils/LWO/lwo2.h"
+};
 
 #ifdef _EDITOR
 #include "Layers/xrRender/ResourceManager.h"
 
-#include "xrCore/Platform.h"
+#include "Common/Platform.hpp"
 extern "C" XR_IMPORT lwObject* LWOImportObject(char* filename);
 extern "C" XR_IMPORT void LWOCloseFile(lwObject* object);
 #endif

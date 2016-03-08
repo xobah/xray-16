@@ -18,7 +18,6 @@
     <ProjectName>CxImage</ProjectName>
     <ProjectGuid>{880CD250-BA77-4DAF-A8D4-552F12DD3AE4}</ProjectGuid>
     <Keyword>MFCProj</Keyword>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -79,10 +78,9 @@
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <AdditionalIncludeDirectories>$(SolutionDir)Externals;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CXIMAGE_BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_LIB;JAS_WIN_MSVC_BUILD;CXIMAGE_BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
-      <ExceptionHandling />
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
@@ -113,11 +111,9 @@
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <AdditionalIncludeDirectories>$(SolutionDir)Externals;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;CXIMAGE_BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_LIB;JAS_WIN_MSVC_BUILD;CXIMAGE_BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
-      <ExceptionHandling>
-      </ExceptionHandling>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
@@ -143,9 +139,8 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)Externals;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;JAS_WIN_MSVC_BUILD;CXIMAGE_AS_SHARED_LIBRARY;_USRDLL;CXIMAGE_BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_LIB;JAS_WIN_MSVC_BUILD;CXIMAGE_BUILD;CXIMAGE_AS_SHARED_LIBRARY;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
-      <ExceptionHandling>Sync</ExceptionHandling>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>

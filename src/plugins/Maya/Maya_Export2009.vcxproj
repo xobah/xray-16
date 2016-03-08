@@ -59,19 +59,19 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(xrPlugBinDir)Maya2009</OutDir>
+    <OutDir>$(xrPlugBinDir)Maya2009\</OutDir>
     <TargetName>XRayExport</TargetName>
     <TargetExt>.mll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(xrPlugBinDir)Maya2009</OutDir>
+    <OutDir>$(xrPlugBinDir)Maya2009\</OutDir>
     <TargetName>XRayExport</TargetName>
     <TargetExt>.mll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(xrPlugBinDir)Maya2009</OutDir>
+    <OutDir>$(xrPlugBinDir)Maya2009\</OutDir>
     <TargetName>XRayExport</TargetName>
     <TargetExt>.mll</TargetExt>
   </PropertyGroup>
@@ -86,12 +86,10 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)Externals\maya/ver-2009/include;../Shared;$(SolutionDir)xrEngine;$(SolutionDir)utils/xrQSlim/src/;$(SolutionDir)Externals\MagicSoftware\FreeMagic\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>DEBUG;WIN32;_WINDOWS;NT_PLUGIN;_MAYA_EXPORT;_MAYA_PLUGIN;XRCORE_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NT_PLUGIN;_MAYA_EXPORT;_MAYA_PLUGIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
@@ -123,14 +121,12 @@
     <ClCompile>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>$(SolutionDir)Externals\maya/ver-2009/include;../Shared;$(SolutionDir)xrEngine;$(SolutionDir)utils/xrQSlim/src/;$(SolutionDir)Externals\MagicSoftware\FreeMagic\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;NT_PLUGIN;_MAYA_EXPORT;_MAYA_PLUGIN;XRCORE_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NT_PLUGIN;_MAYA_EXPORT;_MAYA_PLUGIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
-      <ExceptionHandling />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
@@ -160,15 +156,12 @@
     <ClCompile>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>$(SolutionDir)Externals\maya/ver-2009/include;../Shared;$(SolutionDir)xrEngine;$(SolutionDir)utils/xrQSlim/src/;$(SolutionDir)Externals\MagicSoftware\FreeMagic\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;NT_PLUGIN;_MAYA_EXPORT;_MAYA_PLUGIN;XRCORE_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NT_PLUGIN;_MAYA_EXPORT;_MAYA_PLUGIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
-      <ExceptionHandling>
-      </ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>

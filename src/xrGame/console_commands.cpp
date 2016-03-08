@@ -43,8 +43,8 @@
 #include "character_hit_animations_params.h"
 #include "inventory_upgrade_manager.h"
 
-#include "GameSpy/GameSpy_Full.h"
-#include "GameSpy/GameSpy_Patching.h"
+#include "xrGameSpy/GameSpy_Full.h"
+#include "xrGameSpy/GameSpy_Patching.h"
 
 #include "ai_debug_variables.h"
 #include "xrPhysics/console_vars.h"
@@ -137,12 +137,12 @@ enum E_COMMON_FLAGS{
 
 CUIOptConCom g_OptConCom;
 
-typedef void (*full_memory_stats_callback_type) ( );
-XRCORE_API full_memory_stats_callback_type g_full_memory_stats_callback;
-
 static void full_memory_stats	( )
 {
 	Memory.mem_compact		();
+	u32		m_base=0,c_base=0,m_lmaps=0,c_lmaps=0;
+    GlobalEnv.Render->ResourcesGetMemoryUsage(m_base, c_base, m_lmaps, c_lmaps);
+	log_vminfo	();
 	size_t	_process_heap	= ::Memory.mem_usage();
 #ifndef PURE_ALLOC
 	u32		_game_lua		= CScriptEngine::GetMemoryUsage();
@@ -150,9 +150,6 @@ static void full_memory_stats	( )
 #endif
 	int		_eco_strings	= (int)g_pStringContainer->stat_economy			();
 	int		_eco_smem		= (int)g_pSharedMemoryContainer->stat_economy	();
-	u32		m_base=0,c_base=0,m_lmaps=0,c_lmaps=0;
-    GlobalEnv.Render->ResourcesGetMemoryUsage(m_base, c_base, m_lmaps, c_lmaps);
-	log_vminfo	();
 	Msg		("* [ D3D ]: textures[%d K]", (m_base+m_lmaps)/1024);
 #ifdef PURE_ALLOC
 	Msg		("* [x-ray]: process heap[%u K]",_process_heap/1024);
@@ -171,7 +168,7 @@ class CCC_MemStats : public IConsole_Command
 public:
 	CCC_MemStats(LPCSTR N) : IConsole_Command(N)  {
 		bEmptyArgsHandled = TRUE;
-		g_full_memory_stats_callback	= &full_memory_stats;
+		xrDebug::SetOutOfMemoryCallback(full_memory_stats);
 	};
 	virtual void Execute(LPCSTR args) {
 		full_memory_stats( );
@@ -387,7 +384,7 @@ public:
 		string_path		fn;
 		FS.update_path	(fn, "$game_saves$", fn_);
 
-		g_pGameLevel->Cameras().AddCamEffector(xr_new<CDemoRecord> (fn));
+		g_pGameLevel->Cameras().AddCamEffector(new CDemoRecord (fn));
 	}
 };
 
@@ -442,7 +439,7 @@ public:
 			  }
 			  strconcat			(sizeof(fn),fn, args, ".xrdemo");
 			  FS.update_path	(fn, "$game_saves$", fn);
-			  g_pGameLevel->Cameras().AddCamEffector(xr_new<CDemoPlay> (fn, 1.0f, loops));
+			  g_pGameLevel->Cameras().AddCamEffector(new CDemoPlay (fn, 1.0f, loops));
 		  }
 	  }
 };
@@ -962,7 +959,8 @@ public:
 	CCC_DebugFonts (LPCSTR N) : IConsole_Command(N) {bEmptyArgsHandled = true; }
 	virtual void Execute				(LPCSTR args) 
 	{
-		xr_new<CUIDebugFonts>()->ShowDialog(true);		
+        // BUG: leak
+		(new CUIDebugFonts())->ShowDialog(true);		
 	}
 };
 
@@ -1692,8 +1690,9 @@ public:
 		}
 		
 //		GameSpyPatching.CheckForPatch(InformOfNoPatch);
-		
-		MainMenu()->GetGS()->GetGameSpyPatching()->CheckForPatch(InformOfNoPatch);
+        CGameSpy_Patching::PatchCheckCallback cb;
+        cb.bind(MainMenu(), &CMainMenu::OnPatchCheck);
+		MainMenu()->GetGS()->GetGameSpyPatching()->CheckForPatch(InformOfNoPatch, cb);
 	}
 };
 

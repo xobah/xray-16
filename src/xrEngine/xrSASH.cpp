@@ -255,8 +255,7 @@ void xrSASH::EndBenchmark()
 void InitInput();
 void destroyInput();
 void InitEngine();
-void InitSound1();
-void InitSound2();
+void InitSound();
 void destroySound();
 void destroyEngine();
 
@@ -476,7 +475,7 @@ void xrSASH::TryInitEngine(bool bNoRun)
         Console->Execute("renderer renderer_r2");
     else
     {
-        CCC_LoadCFG_custom* pTmp = xr_new<CCC_LoadCFG_custom>("renderer ");
+        CCC_LoadCFG_custom* pTmp = new CCC_LoadCFG_custom("renderer ");
         pTmp->Execute(Console->ConfigFile);
         if (m_bOpenAutomate)
             pTmp->Execute("SASH.ltx");
@@ -488,10 +487,7 @@ void xrSASH::TryInitEngine(bool bNoRun)
     InitInput();
 
     Engine.External.Initialize();
-
-    if (bNoRun)
-        InitSound1();
-
+    
     Console->Execute("unbindall");
     Console->ExecuteScript(Console->ConfigFile);
     if (m_bOpenAutomate)
@@ -503,7 +499,7 @@ void xrSASH::TryInitEngine(bool bNoRun)
 
     if (bNoRun)
     {
-        InitSound2();
+        InitSound();
         Device.Create();
     }
 

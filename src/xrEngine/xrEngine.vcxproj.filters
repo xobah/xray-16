@@ -240,9 +240,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CopyProtection.h">
-      <Filter>General</Filter>
-    </ClInclude>
     <ClInclude Include="defines.h">
       <Filter>General</Filter>
     </ClInclude>
@@ -250,9 +247,6 @@
       <Filter>General</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
-      <Filter>General</Filter>
-    </ClInclude>
-    <ClInclude Include="trivial_encryptor.h">
       <Filter>General</Filter>
     </ClInclude>
     <ClInclude Include="x_ray.h">

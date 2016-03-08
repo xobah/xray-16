@@ -61,19 +61,19 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(xrPlugBinDir)LightWave</OutDir>
+    <OutDir>$(xrPlugBinDir)LightWave\</OutDir>
     <TargetName>XRayShader</TargetName>
     <TargetExt>.p</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mixed|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(xrPlugBinDir)LightWave</OutDir>
+    <OutDir>$(xrPlugBinDir)LightWave\</OutDir>
     <TargetName>XRayShader</TargetName>
     <TargetExt>.p</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(xrPlugBinDir)LightWave</OutDir>
+    <OutDir>$(xrPlugBinDir)LightWave\</OutDir>
     <TargetName>XRayShader</TargetName>
     <TargetExt>.p</TargetExt>
   </PropertyGroup>
@@ -88,9 +88,8 @@
     <ClCompile>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>$(SolutionDir)Externals\lightwave/ver-8.0/include;$(SolutionDir)Externals\lightwave/ver-8.0/include/lwsdk;../Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_X86_;_WIN32;WIN32;_WINDOWS;_USRDLL;_LW_PLUGIN;_LW_SHADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_USRDLL;_X86_;_LW_PLUGIN;_LW_SHADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <ExceptionHandling />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <FloatingPointModel>Precise</FloatingPointModel>
@@ -125,10 +124,8 @@
     <ClCompile>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>$(SolutionDir)Externals\lightwave/ver-8.0/include;$(SolutionDir)Externals\lightwave/ver-8.0/include/lwsdk;../Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_X86_;_WIN32;WIN32;_WINDOWS;_USRDLL;_LW_PLUGIN;_LW_SHADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_USRDLL;_X86_;_LW_PLUGIN;_LW_SHADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <ExceptionHandling>
-      </ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <FloatingPointModel>Precise</FloatingPointModel>
@@ -164,14 +161,12 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)Externals\lightwave/ver-8.0/include;$(SolutionDir)Externals\lightwave/ver-8.0/include/lwsdk;../Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>DEBUG;_X86_;WIN32;_WINDOWS;_USRDLL;_EXPORT;_LW_SHADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_USRDLL;_X86_;_LW_PLUGIN;_LW_SHADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>true</MinimalRebuild>
-      <ExceptionHandling>Sync</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>

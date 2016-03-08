@@ -74,7 +74,7 @@ SPass*		CResourceManager::_CreatePass			(const SPass& proto)
 		if (v_passes[it]->equal(proto))
 			return v_passes[it];
 	
-	SPass*	P					=	xr_new<SPass>();
+	SPass*	P					=	new SPass();
 	P->dwFlags					|=	xr_resource_flagged::RF_REGISTERED;
 	P->state					=	proto.state;
 	P->ps						=	proto.ps;
@@ -172,7 +172,7 @@ SVS*	CResourceManager::_CreateVS		(LPCSTR _name)
 	if (I!=m_vs.end())	return I->second;
 	else
 	{
-		SVS*	_vs					= xr_new<SVS>	();
+		SVS*	_vs					= new SVS	();
 		_vs->dwFlags				|= xr_resource_flagged::RF_REGISTERED;
 		m_vs.insert					(mk_pair(_vs->set_name(name),_vs));
 		//_vs->vs				= NULL;
@@ -263,7 +263,7 @@ SPS*	CResourceManager::_CreatePS			(LPCSTR _name)
 	if (I != m_ps.end())	return		I->second;
 	else
 	{
-		SPS*	_ps					=	xr_new<SPS>	();
+		SPS*	_ps					=	new SPS	();
 		_ps->dwFlags				|=	xr_resource_flagged::RF_REGISTERED;
 		m_ps.insert					(mk_pair(_ps->set_name(name),_ps));
 		VERIFY(strcmpi(name, "null") != 0);
@@ -280,9 +280,9 @@ SPS*	CResourceManager::_CreatePS			(LPCSTR _name)
 		FS.update_path				(cname,	"$game_shaders$", cname);
 
 		// duplicate and zero-terminate
-		IReader*		R		= FS.r_open(cname);
+		IReader *file = FS.r_open(cname);
 		//	TODO: DX10: HACK: Implement all shaders. Remove this for PS
-		if (!R)
+		if (!file)
 		{
 			string1024			tmp;
 			//	TODO: HACK: Test failure
@@ -291,10 +291,8 @@ SPS*	CResourceManager::_CreatePS			(LPCSTR _name)
 			Msg					(tmp);
 			strconcat					(sizeof(cname), cname,GlobalEnv.Render->getShaderPath(),"stub_default",".ps");
 			FS.update_path				(cname,	"$game_shaders$", cname);
-			R		= FS.r_open(cname);
+			file = FS.r_open(cname);
 		}
-
-		IReader* file			= FS.r_open(cname);
 		R_ASSERT2				( file, cname );
 		u32	const size			= file->length();
 		char* const data		= (LPSTR)_alloca(size + 1);
@@ -344,7 +342,7 @@ SGS*	CResourceManager::_CreateGS			(LPCSTR name)
 	if (I!=m_gs.end())	return		I->second;
 	else
 	{
-		SGS*	_gs					=	xr_new<SGS>	();
+		SGS*	_gs					=	new SGS	();
 		_gs->dwFlags				|=	xr_resource_flagged::RF_REGISTERED;
 		m_gs.insert					(mk_pair(_gs->set_name(name),_gs));
 		if (0==stricmp(name,"null"))	{
@@ -358,9 +356,9 @@ SGS*	CResourceManager::_CreateGS			(LPCSTR name)
 		FS.update_path				(cname,	"$game_shaders$", cname);
 
 		// duplicate and zero-terminate
-		IReader*		R		= FS.r_open(cname);
+		IReader *file = FS.r_open(cname);
 		//	TODO: DX10: HACK: Implement all shaders. Remove this for PS
-		if (!R)
+		if (!file)
 		{
 			string1024			tmp;
 			//	TODO: HACK: Test failure
@@ -369,9 +367,8 @@ SGS*	CResourceManager::_CreateGS			(LPCSTR name)
 			Msg					(tmp);
 			strconcat					(sizeof(cname), cname,GlobalEnv.Render->getShaderPath(),"stub_default",".gs");
 			FS.update_path				(cname,	"$game_shaders$", cname);
-			R		= FS.r_open(cname);
+			file = FS.r_open(cname);
 		}
-		IReader* file			= FS.r_open(cname);
 		R_ASSERT2				( file, cname );
 
 		// Select target

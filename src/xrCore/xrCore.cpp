@@ -16,8 +16,6 @@
 #endif // DEBUG
 
 XRCORE_API xrCore Core;
-XRCORE_API u32 build_id;
-XRCORE_API LPCSTR build_date;
 
 namespace CPU
 {
@@ -25,8 +23,6 @@ extern void Detect();
 };
 
 static u32 init_counter = 0;
-
-extern char g_application_path[256];
 
 //. extern xr_vector<shared_str>* LogFile;
 
@@ -48,9 +44,6 @@ void xrCore::_initialize(LPCSTR _ApplicationName, LogCallback cb, BOOL init_fs, 
         GetModuleFileName(GetModuleHandle("xrCore"), fn, sizeof(fn));
         _splitpath(fn, dr, di, 0, 0);
         strconcat(sizeof(ApplicationPath), ApplicationPath, dr, di);
-#ifndef _EDITOR
-        xr_strcpy(g_application_path, sizeof(g_application_path), ApplicationPath);
-#endif
 
 #ifdef _EDITOR
         // working path
@@ -83,13 +76,13 @@ void xrCore::_initialize(LPCSTR _ApplicationName, LogCallback cb, BOOL init_fs, 
         R_ASSERT(CPU::ID.feature&_CPU_FEATURE_SSE);
         ttapi_Init(CPU::ID);
         XRay::Math::Initialize();
-        // Debug._initialize ();
+        // xrDebug::Initialize ();
 
         rtc_initialize();
 
-        xr_FS = xr_new<CLocatorAPI>();
+        xr_FS = new CLocatorAPI();
 
-        xr_EFS = xr_new<EFS_Utils>();
+        xr_EFS = new EFS_Utils();
         //. R_ASSERT (co_res==S_OK);
     }
     if (init_fs)
@@ -112,7 +105,8 @@ void xrCore::_initialize(LPCSTR _ApplicationName, LogCallback cb, BOOL init_fs, 
 #endif
 #endif
         FS._initialize(flags, 0, fs_fname);
-        Msg("'%s' build %d, %s\n", "xrCore", build_id, build_date);
+        CalculateBuildId();
+        Msg("'%s' build %d, %s\n", "xrCore", buildId, buildDate);
         EFS._initialize();
 #ifdef DEBUG
 #ifndef _EDITOR
@@ -150,6 +144,41 @@ void xrCore::_destroy()
         xr_free(Params);
         Memory._destroy();
     }
+}
+
+void xrCore::CalculateBuildId()
+{
+    const int startDay = 31;
+    const int startMonth = 1;
+    const int startYear = 1999;
+    const char *monthId[12] =
+    {
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    };
+    const int daysInMonth[12] =
+    {
+        31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
+    };
+    buildDate = __DATE__;
+    int days;
+    int months = 0;
+    int years;
+    string16 month;
+    string256 buffer;
+    xr_strcpy(buffer, buildDate);
+    sscanf(buffer, "%s %d %d", month, &days, &years);
+    for (int i = 0; i<12; i++)
+    {
+        if (_stricmp(monthId[i], month))
+            continue;
+        months = i;
+        break;
+    }
+    buildId = (years- startYear)*365+days-startDay;
+    for (int i = 0; i<months; i++)
+        buildId += daysInMonth[i];
+    for (int i = 0; i<startMonth-1; i++)
+        buildId -= daysInMonth[i];
 }
 
 //. why ???
