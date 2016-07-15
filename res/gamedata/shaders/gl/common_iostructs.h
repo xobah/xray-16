@@ -277,9 +277,9 @@ struct         v_static
 	float4	Nh		; // NORMAL;	// (nx,ny,nz,hemi occlusion)
 	float4	T		; // TANGENT;	// tangent
 	float4	B		; // BINORMAL;	// binormal
-	int2	tc		; // TEXCOORD0;	// (u,v)
+	float2	tc		; // TEXCOORD0;	// (u,v)
 #ifdef	USE_LM_HEMI
-	int2	lmh		; // TEXCOORD1;	// (lmu,lmv)
+	float2	lmh		; // TEXCOORD1;	// (lmu,lmv)
 #endif
 //	float4	color	; // COLOR0;	// (r,g,b,dir-occlusion)	//	Swizzle before use!!!
 	float4	P		; // POSITION;	// (float,float,float,1)
@@ -290,9 +290,9 @@ struct	v_static_color
 	float4	Nh		; // NORMAL;	// (nx,ny,nz,hemi occlusion)
 	float4	T		; // TANGENT;	// tangent
 	float4	B		; // BINORMAL;	// binormal
-	int2	tc		; // TEXCOORD0;	// (u,v)
+	float2	tc		; // TEXCOORD0;	// (u,v)
 #ifdef	USE_LM_HEMI
-	int2	lmh		; // TEXCOORD1;	// (lmu,lmv)
+	float2	lmh		; // TEXCOORD1;	// (lmu,lmv)
 #endif
 	float4	color	; // COLOR0;	// (r,g,b,dir-occlusion)	//	Swizzle before use!!!
 	float4	P		; // POSITION;	// (float,float,float,1)
@@ -413,7 +413,7 @@ struct	p_flat
 struct	v_shadow_direct_aref
 {
 	float4	P		; // POSITION;		// (float,float,float,1)
-	int4	tc		; // TEXCOORD0;	// (u,v,frac,???)
+	float4	tc		; // TEXCOORD0;	// (u,v,frac,???)
 };
 
 struct	v_shadow_direct
@@ -457,7 +457,7 @@ struct	v_tree
 	float4	Nh		; // NORMAL;		// (nx,ny,nz)
 	float3	T		; // TANGENT;		// tangent
 	float3	B		; // BINORMAL;		// binormal
-	int4	tc		; // TEXCOORD0;	// (u,v,frac,???)
+	float4	tc		; // TEXCOORD0;	// (u,v,frac,???)
 };
 
 ////////////////////////////////////////////////////////////////
@@ -465,7 +465,7 @@ struct	v_tree
 struct        v_detail                    
 {
         float4      pos			; // POSITION;                // (float,float,float,1)
-        int4        misc		; // TEXCOORD0;        // (u(Q),v(Q),frac,matrix-id)
+        float4      misc		; // TEXCOORD0;        // (u(Q),v(Q),frac,matrix-id)
 };
 
 #endif	//	common_iostructs_h_included

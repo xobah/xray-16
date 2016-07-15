@@ -64,8 +64,11 @@ float3 calc_model_lq_lighting( float3 norm_w )
 }
 
 float3 	unpack_normal( float3 v )	{ return 2*v-1; }
+float3 	unpack_normal( float4 v )	{ return 2*v.xyz-1; }
 float3 	unpack_bx2( float3 v )	{ return 2*v-1; }
+float3 	unpack_bx2( float4 v )	{ return 2*v.xyz-1; }
 float3 	unpack_bx4( float3 v )	{ return 4*v-2; } //!reduce the amount of stretching from 4*v-2 and increase precision
+float3 	unpack_bx4( float4 v )	{ return 4*v.xyz-2; }
 float2 	unpack_tc_lmap( float2 tc )	{ return tc*(1.f/32768.f);	} // [-1  .. +1 ] 
 float4	unpack_color( float4 c ) { return c.bgra; }
 float4	unpack_D3DCOLOR( float4 c ) { return c.bgra; }
@@ -211,7 +214,7 @@ f_deffer pack_gbuffer( float4 norm, float4 pos, float4 col, uint imask )
 	res.Ne			= norm;
 	res.C			   = col;
 #else
-	res.position	= float4( gbuf_pack_normal( norm ), pos.z, gbuf_pack_hemi_mtl( norm.w, pos.w ) );
+	res.position	= float4( gbuf_pack_normal( norm.xyz ), pos.z, gbuf_pack_hemi_mtl( norm.w, pos.w ) );
 	res.C			   = col;
 #endif
 
@@ -223,14 +226,14 @@ f_deffer pack_gbuffer( float4 norm, float4 pos, float4 col, uint imask )
 }
 
 #ifdef GBUFFER_OPTIMIZATION
-gbuffer_data gbuffer_load_data( float2 tc, float2 pos2d, int iSample )
+gbuffer_data gbuffer_load_data( float2 tc, float4 pos2d, uint iSample )
 {
 	gbuffer_data gbd;
 
 	gbd.P = float3(0,0,0);
 	gbd.hemi = 0;
 	gbd.mtl = 0;
-	gbd.C = 0;
+	gbd.C = float3(0,0,0);
 	gbd.N = float3(0,0,0);
 
 #ifndef USE_MSAA
@@ -247,7 +250,7 @@ gbuffer_data gbuffer_load_data( float2 tc, float2 pos2d, int iSample )
 	// righttop		= (  tan(fHorzFOV/2),  tan(fVertFOV/2), 1 )
 	// leftbottom   = ( -tan(fHorzFOV/2), -tan(fVertFOV/2), 1 )
 	// rightbottom	= (  tan(fHorzFOV/2), -tan(fVertFOV/2), 1 )
-	gbd.P  = float3( P.z * ( pos2d * pos_decompression_params.zw - pos_decompression_params.xy ), P.z );
+	gbd.P  = float3( P.z * ( pos2d.xy * pos_decompression_params.zw - pos_decompression_params.xy ), P.z );
 
 	// reconstruct N
 	gbd.N = gbuf_unpack_normal( P.xy );
@@ -270,21 +273,21 @@ gbuffer_data gbuffer_load_data( float2 tc, float2 pos2d, int iSample )
 	return gbd;
 }
 
-gbuffer_data gbuffer_load_data( float2 tc, float2 pos2d )
+gbuffer_data gbuffer_load_data( float2 tc, float4 pos2d )
 {
    return gbuffer_load_data( tc, pos2d, 0 );
 }
 
-gbuffer_data gbuffer_load_data_offset( float2 tc, float2 OffsetTC, float2 pos2d )
+gbuffer_data gbuffer_load_data_offset( float2 tc, float2 OffsetTC, float4 pos2d )
 {
-	float2  delta	  = ( ( OffsetTC - tc ) * pos_decompression_params2.xy );
+	float4  delta	  = float4( ( OffsetTC - tc ) * pos_decompression_params2.xy, 0, 0 );
 
 	return gbuffer_load_data( OffsetTC, pos2d + delta, 0 );
 }
 
-gbuffer_data gbuffer_load_data_offset( float2 tc, float2 OffsetTC, float2 pos2d, uint iSample )
+gbuffer_data gbuffer_load_data_offset( float2 tc, float2 OffsetTC, float4 pos2d, uint iSample )
 {
-   float2  delta	  = ( ( OffsetTC - tc ) * pos_decompression_params2.xy );
+   float4  delta	  = float4( ( OffsetTC - tc ) * pos_decompression_params2.xy, 0, 0 );
 
    return gbuffer_load_data( OffsetTC, pos2d + delta, iSample );
 }

@@ -141,14 +141,14 @@ GLsizei GetDeclVertexSize(const D3DVERTEXELEMENT9* decl)
 	return size;
 }
 
-void ConvertVertexDeclaration(const D3DVERTEXELEMENT9* decl, GLuint vao)
+void ConvertVertexDeclaration(const D3DVERTEXELEMENT9* dxdecl, SDeclaration* decl)
 {
-	CHK_GL(glBindVertexArray(vao));
+	RCache.set_Format(decl);
 
-	GLsizei stride = GetDeclVertexSize(decl);
+	GLsizei stride = GetDeclVertexSize(dxdecl);
 	for (int i = 0; i < MAXD3DDECLLENGTH; ++i)
 	{
-		const D3DVERTEXELEMENT9		&desc = decl[i];
+		const D3DVERTEXELEMENT9		&desc = dxdecl[i];
 
 		if (desc.Stream == 0xFF)
 			break;
@@ -203,9 +203,9 @@ GLsizei GetFVFVertexSize(u32 FVF)
 	return offset;
 }
 
-void ConvertVertexDeclaration(u32 FVF, GLuint vao)
+void ConvertVertexDeclaration(u32 FVF, SDeclaration* decl)
 {
-	CHK_GL(glBindVertexArray(vao));
+	RCache.set_Format(decl);
 
 	GLsizei stride = GetFVFVertexSize(FVF);
 	u32 offset = 0;
@@ -261,7 +261,7 @@ void ConvertVertexDeclaration(u32 FVF, GLuint vao)
 		if (FVF & D3DFVF_TEXCOORDSIZE4(i))
 			size = 4;
 
-		CHK_GL(glVertexAttribFormat(attrib, size, GL_FLOAT, GL_TRUE, offset));
+		CHK_GL(glVertexAttribFormat(attrib, size, GL_FLOAT, GL_FALSE, offset));
 		CHK_GL(glVertexAttribBinding(attrib, 0));
 		CHK_GL(glEnableVertexAttribArray(attrib));
 		offset += size * sizeof(float);

@@ -142,6 +142,7 @@ void	_VertexStream::Unlock		( u32 Count, u32 Stride)
 	VERIFY				(pVB);
 
 #if defined(USE_OGL)
+	glBindBuffer(GL_ARRAY_BUFFER, pVB);
 	CHK_GL(glUnmapBuffer(GL_ARRAY_BUFFER));
 #elif defined(USE_DX11)
 	HW.pContext->Unmap(pVB, 0);
@@ -251,7 +252,7 @@ u16*	_IndexStream::Lock	( u32 Count, u32& vOffset )
 	}
 #if defined(USE_OGL)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, pIB);
-	CHK_GL(pLockedData = (BYTE*)glMapBufferRange(GL_ELEMENT_ARRAY_BUFFER, mPosition * 2, Count * 2, (BufferAccessMask)dwFlags));
+	CHK_GL(pLockedData = (BYTE*)glMapBufferRange(GL_ELEMENT_ARRAY_BUFFER, mPosition * 2, Count * 2, dwFlags));
 #elif defined(USE_DX11)
 	D3D_MAP MapMode = (dwFlags==LOCKFLAGS_APPEND) ? 
 		D3D_MAP_WRITE_NO_OVERWRITE : D3D_MAP_WRITE_DISCARD;
@@ -280,6 +281,7 @@ void	_IndexStream::Unlock(u32 RealCount)
 	mPosition				+=	RealCount;
 	VERIFY					(pIB);
 #if defined(USE_OGL)
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, pIB);
 	CHK_GL(glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER));
 #elif defined(USE_DX11)
 	HW.pContext->Unmap(pIB, 0);
